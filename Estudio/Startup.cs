@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Estudio.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -26,8 +28,11 @@ namespace Estudio {
 				options.MinimumSameSitePolicy = SameSiteMode.None;
 			});
 
+			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+			//Injeção de Dependência - PostgreSQL
+			services.AddEntityFrameworkNpgsql().AddDbContext<EstudioContext>(options => options.UseNpgsql(Configuration.GetConnectionString("EstudioBD")));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -29,11 +29,52 @@
                 <a asp-page="/Index" class="navbar-brand">Estudio</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-page="/Index">Home</a></li>
-                    <li><a asp-page="/About">About</a></li>
-                    <li><a asp-page="/Contact">Contact</a></li>
-                </ul>
+				<ul class="nav navbar-nav">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Agendamentos <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Cadastrar agendamento</a></li>
+							<li><a href="#">Listar agendamentos</a></li>
+							<li><a href="#">Fechar agendamento</a></li>
+							<li><a href="#">Cadastrar consumíveis</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bandas <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/Bandas/CadBanda">Cadastrar banda</a></li>
+							<li><a href="#">Listar bandas</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Consumíveis <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Cadastrar consumível</a></li>
+							<li><a href="#">Listar consumíveis</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Funcionários <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Cadastrar funcionário</a></li>
+							<li><a href="#">Listar funcionários</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Instrumentos <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Cadastrar instrumentos</a></li>
+							<li><a href="#">Listar instrumentos</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Salas <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Cadastrar sala</a></li>
+							<li><a href="#">Listar salas</a></li>
+						</ul>
+					</li>
+				</ul>
             </div>
         </div>
     </nav>
