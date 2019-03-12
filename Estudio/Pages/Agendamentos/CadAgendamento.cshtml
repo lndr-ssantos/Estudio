@@ -1,0 +1,46 @@
+﻿@page
+@model Estudio.Pages.Agendamentos.CadAgendamentoModel
+@{
+	ViewData["Title"] = "Agendamento";
+}
+
+<h2>Agendamento</h2>
+<hr />
+
+<div class="row">
+	<div class="col-md-4">
+		<form method="post">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+			<div class="form-group">
+				<label asp-for="Agendamento.IdBanda" class="control-label">Banda</label>
+				<select asp-for="Agendamento.IdBanda" asp-items="Model.Bandas" class="form-control">
+					<option value="0">Selecione uma banda</option>
+				</select>
+				<span asp-validation-for="Agendamento.IdBanda" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="Agendamento.IdSala" class="control-label">Sala</label>
+				<select asp-for="Agendamento.IdSala" asp-items="Model.Salas" class="form-control">
+					<option value="0">Selecione uma sala</option>
+				</select>
+				<span asp-validation-for="Agendamento.IdSala" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="Agendamento.Data" class="control-label">Data</label>
+				<input asp-for="Agendamento.Data" class="form-control" type="date" />
+				<span asp-validation-for="Agendamento.Data" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<input type="submit" value="Cadastrar" class="btn btn-default" />
+			</div>
+		</form>
+	</div>
+</div>
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

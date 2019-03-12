@@ -13,10 +13,10 @@ namespace Estudio.EntityConfiguracao {
 			builder.ToTable("BANDAS");
 
 			// Mapeando a propriedade da classe que representa a chave primária
-			builder.HasKey(t => new { t.IdBanda });
+			builder.HasKey(t => t.IdBanda);
 
 			// Mapeando propriedades da classe com as respectivas colunas que representam
-			builder.Property(t => t.IdBanda).HasColumnName("ID_BANDA").IsRequired();
+			builder.Property(t => t.IdBanda).HasColumnName("ID_BANDA").ValueGeneratedOnAdd();
 			builder.Property(t => t.NomeBanda).HasColumnName("NOME_BANDA").IsRequired();
 			builder.Property(t => t.QtdIntegrantes).HasColumnName("QTD_INTEGRANTES").IsRequired();
 			builder.Property(t => t.NomeResponsavel).HasColumnName("NOME_RESPONSAVEL").IsRequired();
