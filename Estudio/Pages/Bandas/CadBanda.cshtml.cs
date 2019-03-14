@@ -27,7 +27,7 @@ namespace Estudio.Pages.Bandas {
 				return Page();
 			}
 
-			_context.Banda.Add(Banda);
+			_context.Bandas.Add(Banda);
 			await _context.SaveChangesAsync();
 
 			return RedirectToPage("../Index");

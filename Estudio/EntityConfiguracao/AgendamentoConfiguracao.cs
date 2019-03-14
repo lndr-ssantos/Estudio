@@ -34,7 +34,7 @@ namespace Estudio.EntityConfiguracao {
 			builder.Property(t => t.IdSala).HasColumnName("ID_SALA").IsRequired();
 			builder.Property(t => t.IdFuncionario).HasColumnName("ID_FUNCIONARIO");
 			builder.Property(t => t.Valor).HasColumnName("VALOR");
-			builder.Property(t => t.Status).HasColumnName("STATUS").IsRequired();
+			builder.Property(t => t.Ativo).HasColumnName("ATIVO").IsRequired();
 			builder.Property(t => t.Data).HasColumnName("DATA").IsRequired();
 		}
 	}

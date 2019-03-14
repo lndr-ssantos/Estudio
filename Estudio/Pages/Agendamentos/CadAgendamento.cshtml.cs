@@ -24,13 +24,13 @@ namespace Estudio.Pages.Agendamentos {
 		public Agendamento Agendamento { get; set; }
 
 		public void OnGet() {
-			Bandas = _context.Banda
+			Bandas = _context.Bandas
 				.Select(x => new SelectListItem {
 					Value = x.IdBanda.ToString(),
 					Text = x.NomeBanda
 				}).ToList();
 
-			Salas = _context.Sala
+			Salas = _context.Salas
 					.Select(x => new SelectListItem {
 						Value = x.IdSala.ToString(),
 						Text = x.Nome
@@ -42,7 +42,7 @@ namespace Estudio.Pages.Agendamentos {
 				return Page();
 			}
 
-			_context.Agendamento.Add(Agendamento);
+			_context.Agendamentos.Add(Agendamento);
 			await _context.SaveChangesAsync();
 
 			return RedirectToPage("../Index");

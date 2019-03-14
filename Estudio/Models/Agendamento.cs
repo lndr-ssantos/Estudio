@@ -13,11 +13,12 @@ namespace Estudio.Models {
 		public int? IdFuncionario { get; set; }
 		public Funcionario Funcionario { get; set; }
 		public decimal? Valor { get; set; }
-		public char Status { get; set; }
+		public bool Ativo { get; set; }
 		public DateTime Data { get; set; }
+		public IList<ControleConsumiveis> ControleConsumiveis { get; set; }
 
 		public Agendamento() {
-			Status = '0';
+			Ativo = true; 
 		}
 	}
 }

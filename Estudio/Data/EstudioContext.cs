@@ -10,10 +10,12 @@ namespace Estudio.Data {
 	public class EstudioContext : DbContext {
 		public EstudioContext(DbContextOptions<EstudioContext> options) : base(options) { }
 
-		public DbSet<Banda> Banda { get; set; }
-		public DbSet<Agendamento> Agendamento { get; set; }
-		public DbSet<Funcionario> Funcionario { get; set; }
-		public DbSet<Sala> Sala { get; set; }
+		public DbSet<Banda> Bandas { get; set; }
+		public DbSet<Agendamento> Agendamentos { get; set; }
+		public DbSet<Funcionario> Funcionarios { get; set; }
+		public DbSet<Sala> Salas { get; set; }
+		public DbSet<Consumivel> Consumiveis { get; set; }
+		public DbSet<ControleConsumiveis> ControleConsumiveis { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder) {
 			// Atribuir configurações
@@ -21,6 +23,8 @@ namespace Estudio.Data {
 			modelBuilder.ApplyConfiguration(new AgendamentoConfiguracao());
 			modelBuilder.ApplyConfiguration(new FuncionarioConfiguracao());
 			modelBuilder.ApplyConfiguration(new SalaConfiguracao());
+			modelBuilder.ApplyConfiguration(new ConsumivelConfiguracao());
+			modelBuilder.ApplyConfiguration(new ControleConsumiveisConfiguracao());
 		}
 	}
 }
