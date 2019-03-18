@@ -16,9 +16,5 @@ namespace Estudio.Models {
 		public bool Ativo { get; set; }
 		public DateTime Data { get; set; }
 		public IList<ControleConsumiveis> ControleConsumiveis { get; set; }
-
-		public Agendamento() {
-			Ativo = true; 
-		}
 	}
 }

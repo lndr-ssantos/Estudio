@@ -1,0 +1,41 @@
+﻿@page "{IdAgendamento:int?}"
+@model Estudio.Pages.Agendamentos.FecharAgendamentoModel
+@{
+    ViewData["Title"] = "Fechar Agendamento";
+}
+
+<h2>Fechar Agendamento</h2>
+
+<h4>@Model.Agendamento.Banda.NomeBanda - @Model.Agendamento.Sala.Nome - @Model.Agendamento.Data.ToString("dd/MM/yyyy")</h4>
+<hr />
+<h4>Pedidos</h4>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Nome</th>
+			<th>Valor Unitário</th>
+			<th>Quantidade</th>
+			<th>Valor total</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var consumivel in Model.Agendamento.ControleConsumiveis) {
+			<tr>
+				<td>@Html.DisplayFor(x => consumivel.Consumivel.Nome)</td>
+			
+				<td>R$ @Html.DisplayFor(x => consumivel.Consumivel.Valor)</td>
+			
+				<td>@Html.DisplayFor(x => consumivel.Quantidade)</td>
+			
+				<td>R$ @(consumivel.Quantidade * consumivel.Consumivel.Valor)</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+<h4>Valor Total: R$ @Model.Agendamento.Valor</h4>
+
+<form method="post">
+	@Html.HiddenFor(x => x.Agendamento.IdAgendamento)
+	<button class="btn btn-primary">Fechar agendamento</button>
+</form>

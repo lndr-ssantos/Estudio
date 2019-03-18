@@ -1,0 +1,34 @@
+﻿@page
+@model Estudio.Pages.Agendamentos.FecharAgendamentoListModel
+@{
+    ViewData["Title"] = "Fechar Agendamento - Agendamentos Abertos";
+}
+
+<h2>Fechar Agendamento</h2>
+
+<h4>Lista de agendamentos em aberto</h4>
+<hr />
+<table class="table">
+	<thead>
+		<tr>
+			<th>Banda</th>
+			<th>Sala</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var agendamento in Model.Agendamentos) {
+		   <tr>
+			   <td>
+				   @Html.DisplayFor(x => agendamento.NomeBanda)
+			   </td>
+			   <td>
+				   @Html.DisplayFor(x => agendamento.NomeSala)
+			   </td>
+			   <td>
+				   <a asp-page="./FecharAgendamento" asp-route-IdAgendamento="@agendamento.IdAgendamento" class="btn btn-default">Fechar</a>
+			   </td>
+		   </tr>
+		}
+	</tbody>
+</table>

@@ -12,6 +12,6 @@ namespace Estudio.Models {
 		public string TelResponsavel { get; set; }
 		public string EmailResponsavel { get; set; }
 		public string CPFResponsavel { get; set; }
-		public ICollection<Agendamento> Agendamentos { get; set; }
+		public IList<Agendamento> Agendamentos { get; set; }
 	}
 }

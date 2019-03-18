@@ -42,6 +42,8 @@ namespace Estudio.Pages.Agendamentos {
 				return Page();
 			}
 
+			Agendamento.Ativo = true;
+
 			_context.Agendamentos.Add(Agendamento);
 			await _context.SaveChangesAsync();
 

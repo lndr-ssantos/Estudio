@@ -5,6 +5,6 @@ namespace Estudio.Models {
 		public int IdFuncionario { get; set; }
 		public string Nome { get; set; }
 		public string Email { get; set; }
-		public ICollection<Agendamento> Agendamentos { get; set; }
+		public IList<Agendamento> Agendamentos { get; set; }
 	}
 }

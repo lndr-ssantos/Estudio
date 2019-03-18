@@ -6,6 +6,6 @@ namespace Estudio.Models {
 		public string Nome { get; set; }
 		public string Tipo { get; set; }
 		public decimal Valor { get; set; }
-		public ICollection<Agendamento> Agendamentos { get; set; }
+		public IList<Agendamento> Agendamentos { get; set; }
 	}
 }
