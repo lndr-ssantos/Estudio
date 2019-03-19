@@ -20,10 +20,10 @@
 		@foreach (var agendamento in Model.Agendamentos) {
 		   <tr>
 			   <td>
-				   @Html.DisplayFor(x => agendamento.NomeBanda)
+				   @Html.DisplayFor(x => agendamento.Banda.NomeBanda)
 			   </td>
 			   <td>
-				   @Html.DisplayFor(x => agendamento.NomeSala)
+				   @Html.DisplayFor(x => agendamento.Sala.Nome)
 			   </td>
 			   <td>
 				   <a asp-page="./FecharAgendamento" asp-route-IdAgendamento="@agendamento.IdAgendamento" class="btn btn-default">Fechar</a>

@@ -10,7 +10,6 @@ namespace Estudio.Pages.Agendamentos {
 	public class FecharAgendamentoModel : PageModel {
 		private readonly EstudioContext _context;
 		public Agendamento Agendamento { get; set; }
-		public AgendamentoViewModel AgendamentoViewModel { get; set; }
 
 		public FecharAgendamentoModel(EstudioContext context) {
 			_context = context;
