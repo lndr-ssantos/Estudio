@@ -1,0 +1,29 @@
+﻿@page
+@model Estudio.Pages.Instrumentos.InstrumentosListModel
+@{
+    ViewData["Title"] = "Instrumentos";
+}
+
+<h2>Instrumentos</h2>
+<hr />
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Modelo</th>
+			<th>Marca</th>
+			<th>Tipo</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var instrumento in Model.Instrumentos) {
+		   <tr>
+			   <td>@Html.DisplayFor(x => instrumento.Id)</td>
+			   <td>@Html.DisplayFor(x => instrumento.Modelo)</td>
+			   <td>@Html.DisplayFor(x => instrumento.Marca)</td>
+			   <td>@Html.DisplayFor(x => instrumento.Tipo)</td>
+		   </tr>
+		}
+	</tbody>
+</table>

@@ -27,13 +27,13 @@
 			
 				<td>@Html.DisplayFor(x => consumivel.Quantidade)</td>
 			
-				<td>R$ @(consumivel.Quantidade * consumivel.Consumivel.Valor)</td>
+				<td>R$@(consumivel.Quantidade * consumivel.Consumivel.Valor)</td>
 			</tr>
 		}
 	</tbody>
 </table>
 
-<h4>Valor Total: R$ @Model.Agendamento.Valor</h4>
+<h4>Valor Total: R$@Model.Agendamento.Valor</h4>
 
 <form method="post">
 	@Html.HiddenFor(x => x.Agendamento.IdAgendamento)

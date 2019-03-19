@@ -16,6 +16,7 @@ namespace Estudio.Data {
 		public DbSet<Sala> Salas { get; set; }
 		public DbSet<Consumivel> Consumiveis { get; set; }
 		public DbSet<ControleConsumiveis> ControleConsumiveis { get; set; }
+		public DbSet<Instrumento> Instrumentos { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder) {
 			// Atribuir configurações
@@ -25,6 +26,7 @@ namespace Estudio.Data {
 			modelBuilder.ApplyConfiguration(new SalaConfiguracao());
 			modelBuilder.ApplyConfiguration(new ConsumivelConfiguracao());
 			modelBuilder.ApplyConfiguration(new ControleConsumiveisConfiguracao());
+			modelBuilder.ApplyConfiguration(new InstrumentoConfiguracao());
 		}
 	}
 }

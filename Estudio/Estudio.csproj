@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <Folder Include="Pages\Consumiveis\" />
-    <Folder Include="Pages\Instrumentos\" />
   </ItemGroup>
 
 </Project>
