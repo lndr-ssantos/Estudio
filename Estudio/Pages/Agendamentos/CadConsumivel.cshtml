@@ -8,11 +8,13 @@
 
 <h4>Consumível</h4>
 <hr />
-<div class="row">
-	<div class="col-md-4">
-		<form method="post">
+<form method="post">
+	<div class="row">
+		<div class="col-md-3">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="col">
 
+			</div>
 			<div class="form-group">
 				<label asp-for="ConsumiveisViewModel[0].IdAgendamento" class="control-label">Agendamento</label>
 				<select asp-for="ConsumiveisViewModel[0].IdAgendamento" asp-items="Model.Agendamentos" class="form-control">
@@ -20,41 +22,56 @@
 				</select>
 				<span asp-validation-for="ConsumiveisViewModel[0].IdAgendamento" class="text-danger"></span>
 			</div>
+		</div>
+	</div>
 
+	<div class="row">
+		<div class="col-md-7">
 			<table class="table">
 				<thead>
 					<tr>
 						<th>#</th>
 						<th>Nome</th>
 						<th>Valor</th>
+						<th>Quantidade Disponível</th>
 						<th>Quantidade</th>
 					</tr>
 				</thead>
 				<tbody>
 					@for (int i = 0; i < Model.ConsumiveisViewModel.Count; i++) {
-					   <tr>
-						   <td>
-							   @Html.HiddenFor(x => x.ConsumiveisViewModel[i].IdConsumivel)
-							   @Html.DisplayFor(modelConsumivel => @Model.ConsumiveisViewModel[i].IdConsumivel)
-						   </td>
-						   <td>
-							   @Html.DisplayFor(modelConsumivel => Model.ConsumiveisViewModel[i].Descricao)
-						   </td>
-						   <td>
-							   R$@Html.DisplayFor(modelConsumivel => Model.ConsumiveisViewModel[i].Valor)
-						   </td>
-						   <td>
-							   @Html.TextBoxFor(x => x.ConsumiveisViewModel[i].Quantidade, null, new { @class = "form-control" })
-						   </td>
-					   </tr>
+						<tr>
+							<td>
+								@Html.HiddenFor(x => x.ConsumiveisViewModel[i].IdConsumivel)
+								@Html.DisplayFor(modelConsumivel => Model.ConsumiveisViewModel[i].IdConsumivel)
+							</td>
+							<td>
+								@Html.HiddenFor(x => x.ConsumiveisViewModel[i].Descricao)
+								@Html.DisplayFor(modelConsumivel => Model.ConsumiveisViewModel[i].Descricao)
+							</td>
+							<td>
+								R$@Html.DisplayFor(modelConsumivel => Model.ConsumiveisViewModel[i].Valor)
+							</td>
+							<td>
+								@Html.DisplayFor(modelConsumivel => Model.ConsumiveisViewModel[i].QuantidadeEstoque)
+							</td>
+							<td>
+								@Html.TextBoxFor(x => x.ConsumiveisViewModel[i].Quantidade, null, new { @class = "form-control" })
+							</td>
+						</tr>
 					}
 				</tbody>
 			</table>
 
+			@if (Model.Mensagens != null) {
+				@foreach (var mensagem in Model.Mensagens) {
+					<div class="alert alert-danger" role="alert">@Html.DisplayFor(x => mensagem)</div>
+				}
+			}
+		
 			<div class="form-group">
 				<input type="submit" value="Cadastrar" class="btn btn-default" />
 			</div>
-		</form>
+		</div>
 	</div>
-</div>
+</form>
 

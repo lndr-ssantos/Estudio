@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Estudio.Data;
+using Estudio.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -33,6 +34,8 @@ namespace Estudio {
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 			//Injeção de Dependência - PostgreSQL
 			services.AddEntityFrameworkNpgsql().AddDbContext<EstudioContext>(options => options.UseNpgsql(Configuration.GetConnectionString("EstudioBD")));
+
+			services.AddScoped(typeof (IConsumiveisServices),  typeof (ConsumiveisServices));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

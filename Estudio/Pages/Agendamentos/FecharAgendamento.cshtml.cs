@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Estudio.Data;
 using Estudio.Models;
 using Estudio.ViewModels;
@@ -41,9 +38,9 @@ namespace Estudio.Pages.Agendamentos {
       }
 
 		public async Task<IActionResult> OnPostAsync(int? IdAgendamento) {
-			var Agendamento = await _context.Agendamentos.FirstOrDefaultAsync(x => x.IdAgendamento == IdAgendamento);
-			Agendamento.Ativo = false;
-			_context.Entry(Agendamento).Property("Ativo").IsModified = true;
+			var agendamento = await _context.Agendamentos.FirstOrDefaultAsync(x => x.IdAgendamento == IdAgendamento);
+			agendamento.Ativo = false;
+			_context.Entry(agendamento).Property("Ativo").IsModified = true;
 			await _context.SaveChangesAsync();
 
 			return RedirectToPage("../Index");

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Estudio.Data;
 using Estudio.Models;
+using Estudio.Services;
 using Estudio.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,31 +14,21 @@ namespace Estudio.Pages.Agendamentos {
 	public class CadConsumivelModel : PageModel {
 		private const bool AgendamentoStatusAberto = true;
 		private readonly EstudioContext _context;
+		private readonly IConsumiveisServices _consumiveisServices;
+		public List<string> Mensagens { get; set; }
 		public List<SelectListItem> Agendamentos;
 		public ControleConsumiveis ControleConsumiveis { get; set; }
 
-		public CadConsumivelModel(EstudioContext context) {
+		public CadConsumivelModel(EstudioContext context, IConsumiveisServices consumiveisServices) {
 			_context = context;
+			_consumiveisServices = consumiveisServices;
 		}
 
 		[BindProperty]
 		public List<ControleConsumiveisViewModel> ConsumiveisViewModel { get; set; }
 
 		public void OnGet() {
-			Agendamentos = _context.Agendamentos
-				.Where(x => x.Ativo == AgendamentoStatusAberto && x.Data == DateTime.Today)
-				.Select(x => new SelectListItem {
-					Value = x.IdAgendamento.ToString(),
-					Text = $"{x.Banda.NomeBanda} - {x.Sala.Nome}"
-				}).ToList();
-
-			ConsumiveisViewModel = _context.Consumiveis
-				.Select(x => new ControleConsumiveisViewModel() {
-					IdConsumivel = x.Id,
-					Descricao = x.Nome,
-					Quantidade = 0,
-					Valor = x.Valor
-				}).ToList();
+			CarregarListas();
 		}
 
 		public async Task<IActionResult> OnPostAsync() {
@@ -45,6 +36,7 @@ namespace Estudio.Pages.Agendamentos {
 				return Page();
 			}
 
+			Mensagens = new List<string>();
 			var IdAgendamento = ConsumiveisViewModel[0].IdAgendamento;
 			foreach (var consumivel in ConsumiveisViewModel) {
 				if (consumivel.Quantidade > 0) {
@@ -54,12 +46,42 @@ namespace Estudio.Pages.Agendamentos {
 						Quantidade = consumivel.Quantidade
 					};
 
-					_context.ControleConsumiveis.Add(ControleConsumiveis);
+					var atualizacaoEstoque = await _consumiveisServices.AtualizarEstoque(consumivel.IdConsumivel, consumivel.Quantidade);
+
+					if (atualizacaoEstoque) {
+						_context.ControleConsumiveis.Add(ControleConsumiveis);
+					} else {
+						Mensagens.Add($"O consumível {consumivel.Descricao} não tem {consumivel.Quantidade} unidades disponíveis");
+					}
 				}
+			}
+
+			if (Mensagens.Count > 0) {
+				CarregarListas();
+				return Page();
 			}
 
 			await _context.SaveChangesAsync();
 			return RedirectToPage("../Index");
 		}
-   }
+
+		private void CarregarListas() {
+			Agendamentos = _context.Agendamentos
+			.Where(x => x.Ativo == AgendamentoStatusAberto && x.Data == DateTime.Today)
+			.Select(x => new SelectListItem {
+				Value = x.IdAgendamento.ToString(),
+				Text = $"{x.Banda.NomeBanda} - {x.Sala.Nome}"
+			}).ToList();
+
+			ConsumiveisViewModel = _context.Consumiveis
+				.Where(x => x.QuantidadeEstoque > 0)
+				.Select(x => new ControleConsumiveisViewModel() {
+					IdConsumivel = x.Id,
+					Descricao = x.Nome,
+					Quantidade = 0,
+					Valor = x.Valor,
+					QuantidadeEstoque = x.QuantidadeEstoque
+				}).OrderBy(x => x.IdConsumivel).ToList();
+		}
+	}
 }

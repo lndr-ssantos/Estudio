@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Estudio.Models {
 	public class Consumivel {
@@ -9,6 +6,7 @@ namespace Estudio.Models {
 		public string Nome { get; set; }
 		public string Tipo { get; set; }
 		public decimal Valor { get; set; }
+		public int QuantidadeEstoque { get; set; }
 		public IList<ControleConsumiveis> ControleConsumiveis { get; set; }
 	}
 }
