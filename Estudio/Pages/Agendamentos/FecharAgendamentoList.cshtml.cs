@@ -4,8 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Estudio.Data;
 using Estudio.Models;
-using Estudio.ViewModels;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,12 +16,12 @@ namespace Estudio.Pages.Agendamentos {
 			_context = context;
 		}
 
-		public void OnGet() {
-			Agendamentos = _context.Agendamentos
+		public async Task OnGetAsync() {
+			Agendamentos = await _context.Agendamentos
 				.Where(x => x.Ativo == true && x.Data == DateTime.Today)
 				.Include(agendamento => agendamento.Banda)
 				.Include(agendamento => agendamento.Sala)
-				.ToList();
+				.ToListAsync();
 		}
    }
 }

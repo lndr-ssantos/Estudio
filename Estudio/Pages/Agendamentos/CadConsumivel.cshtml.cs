@@ -9,6 +9,7 @@ using Estudio.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace Estudio.Pages.Agendamentos {
 	public class CadConsumivelModel : PageModel {
@@ -27,8 +28,8 @@ namespace Estudio.Pages.Agendamentos {
 		[BindProperty]
 		public List<ControleConsumiveisViewModel> ConsumiveisViewModel { get; set; }
 
-		public void OnGet() {
-			CarregarListas();
+		public async Task OnGet() {
+			await CarregarListas();
 		}
 
 		public async Task<IActionResult> OnPostAsync() {
@@ -57,7 +58,7 @@ namespace Estudio.Pages.Agendamentos {
 			}
 
 			if (Mensagens.Count > 0) {
-				CarregarListas();
+				await CarregarListas();
 				return Page();
 			}
 
@@ -65,15 +66,15 @@ namespace Estudio.Pages.Agendamentos {
 			return RedirectToPage("../Index");
 		}
 
-		private void CarregarListas() {
-			Agendamentos = _context.Agendamentos
+		private async Task CarregarListas() {
+			Agendamentos = await _context.Agendamentos
 			.Where(x => x.Ativo == AgendamentoStatusAberto && x.Data == DateTime.Today)
 			.Select(x => new SelectListItem {
 				Value = x.IdAgendamento.ToString(),
 				Text = $"{x.Banda.NomeBanda} - {x.Sala.Nome}"
-			}).ToList();
+			}).ToListAsync();
 
-			ConsumiveisViewModel = _context.Consumiveis
+			ConsumiveisViewModel = await _context.Consumiveis
 				.Where(x => x.QuantidadeEstoque > 0)
 				.Select(x => new ControleConsumiveisViewModel() {
 					IdConsumivel = x.Id,
@@ -81,7 +82,7 @@ namespace Estudio.Pages.Agendamentos {
 					Quantidade = 0,
 					Valor = x.Valor,
 					QuantidadeEstoque = x.QuantidadeEstoque
-				}).OrderBy(x => x.IdConsumivel).ToList();
+				}).OrderBy(x => x.IdConsumivel).ToListAsync();
 		}
 	}
 }

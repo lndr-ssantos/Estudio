@@ -1,0 +1,59 @@
+﻿@page
+@model Estudio.Pages.Consumiveis.ConsumiveisListModel
+@{
+    ViewData["Title"] = "Lista de Consumíveis";
+}
+
+<h2>Lista</h2>
+<h4>Consumíveis</h4>
+<hr />
+
+@{
+   if (TempData["MensagemAtualizacaoConsumivel"] != null) {
+	  <div class="alert alert-success alert-dismissible" role="alert">
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		  @TempData["MensagemAtualizacaoConsumivel"]
+	  </div>
+   }
+}
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Consumiveis[0].Nome)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Consumiveis[0].Tipo)
+			</th>
+			<th>
+				R$@Html.DisplayNameFor(model => model.Consumiveis[0].Valor)
+			</th>
+			<th>
+				Quantidade em Estoque
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var consumivel in Model.Consumiveis) {
+			<tr>
+				<td>
+					@Html.DisplayFor(modelconsumivel => consumivel.Nome)
+				</td>
+				<td>
+					@Html.DisplayFor(modelconsumivel => consumivel.Tipo)
+				</td>
+				<td>
+					@Html.DisplayFor(modelconsumivel => consumivel.Valor)
+				</td>
+				<td>
+					@Html.DisplayFor(modelConsumivel => consumivel.QuantidadeEstoque)
+				</td>
+				<td>
+					<a asp-page="./EditarConsumivel" asp-route-idConsumivel="@consumivel.Id"><i class="fas fa-edit" aria-hidden="true"></i></a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

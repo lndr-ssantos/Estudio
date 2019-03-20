@@ -1,0 +1,50 @@
+﻿@page
+@model Estudio.Pages.Consumiveis.CadConsumivelModel
+@{
+    ViewData["Title"] = "Cadastrar Consumível";
+}
+
+<h2>Cadastrar</h2>
+<h4>Consumível</h4>
+<hr />
+
+<div class="row">
+	<div class="col-md-4">
+		<form method="post">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+			<div class="form-group">
+				<label asp-for="Consumivel.Nome" class="control-label"></label>
+				<input asp-for="Consumivel.Nome" class="form-control"/>
+				<span asp-validation-for="Consumivel.Nome" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="Consumivel.Tipo" class="control-label"></label>
+				<select asp-for="Consumivel.Tipo" class="form-control">
+					<option value="0">Selecione um tipo</option>
+					<option value="CHOCOLATE">Chocolate</option>
+					<option value="SALGADINHO">Salgadinho</option>
+					<option value="CERVEJA">Cerveja</option>
+				</select>
+				<span asp-validation-for="Consumivel.Tipo" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="Consumivel.Valor" class="control-label"></label>
+				<input asp-for="Consumivel.Valor" class="form-control"/>
+				<span asp-validation-for="Consumivel.Valor" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="Consumivel.QuantidadeEstoque" class="control-label">Quantidade em Estoque</label>
+				<input asp-for="Consumivel.QuantidadeEstoque" class="form-control"/>
+				<span asp-validation-for="Consumivel.QuantidadeEstoque" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<input type="submit" value="Cadastrar" class="btn btn-default" />
+			</div>
+		</form>
+	</div>
+</div>
