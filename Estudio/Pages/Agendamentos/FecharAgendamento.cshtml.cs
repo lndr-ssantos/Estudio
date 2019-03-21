@@ -41,7 +41,7 @@ namespace Estudio.Pages.Agendamentos {
 			_context.Entry(agendamento).Property("Ativo").IsModified = true;
 			await _context.SaveChangesAsync();
 
-			return RedirectToPage("../Index");
+			return RedirectToPage("../Dashboard");
 		}
 
 		private void CalcularValorTotal() {

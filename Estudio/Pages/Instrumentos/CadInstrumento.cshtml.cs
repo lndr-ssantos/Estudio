@@ -30,7 +30,7 @@ namespace Estudio.Pages.Instrumentos {
 			_context.Instrumentos.Add(Instrumento);
 			await _context.SaveChangesAsync();
 
-			return RedirectToPage("../Index");
+			return RedirectToPage("../Dashboard");
 		}
    }
 }

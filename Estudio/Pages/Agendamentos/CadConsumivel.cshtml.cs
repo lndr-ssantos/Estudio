@@ -63,7 +63,7 @@ namespace Estudio.Pages.Agendamentos {
 			}
 
 			await _context.SaveChangesAsync();
-			return RedirectToPage("../Index");
+			return RedirectToPage("../Dashboard");
 		}
 
 		private async Task CarregarListas() {

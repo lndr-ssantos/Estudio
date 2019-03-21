@@ -30,7 +30,7 @@ namespace Estudio.Pages.Bandas {
 			_context.Bandas.Add(Banda);
 			await _context.SaveChangesAsync();
 
-			return RedirectToPage("../Index");
+			return RedirectToPage("../Dashboard");
 		}
 	}
 }

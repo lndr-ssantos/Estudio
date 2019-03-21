@@ -47,7 +47,7 @@ namespace Estudio.Pages.Agendamentos {
 			_context.Agendamentos.Add(Agendamento);
 			await _context.SaveChangesAsync();
 
-			return RedirectToPage("../Index");
+			return RedirectToPage("../Dashboard");
 		}
    }
 }

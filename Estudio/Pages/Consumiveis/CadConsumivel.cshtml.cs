@@ -27,7 +27,7 @@ namespace Estudio.Pages.Consumiveis {
 			_context.Consumiveis.Add(Consumivel);
 			await _context.SaveChangesAsync();
 
-			return RedirectToPage("../Index");
+			return RedirectToPage("../Dashboard");
 		}
    }
 }

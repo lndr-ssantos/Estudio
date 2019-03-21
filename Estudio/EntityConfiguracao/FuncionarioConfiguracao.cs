@@ -16,6 +16,7 @@ namespace Estudio.EntityConfiguracao {
 			builder.Property(t => t.IdFuncionario).HasColumnName("ID_FUNCIONARIO").ValueGeneratedOnAdd();
 			builder.Property(t => t.Nome).HasColumnName("NOME_FUNCIONARIO").IsRequired();
 			builder.Property(t => t.Email).HasColumnName("EMAIL_FUNCIONARIO").IsRequired();
+			builder.Property(t => t.Senha).HasColumnName("SENHA_FUNCIONARIO").IsRequired();
 		}
 	}
 }
