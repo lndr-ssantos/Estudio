@@ -7,6 +7,8 @@ using Estudio.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Estudio.GlobalConfiguracao;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Estudio.Pages {
 	public class IndexModel : PageModel {
@@ -24,7 +26,12 @@ namespace Estudio.Pages {
       }
 
 		public async Task<IActionResult> OnPostAsync() {
-			var funcionario = await _context.Funcionarios.Where(x => x.Email == Funcionario.Email && x.Senha == Funcionario.Senha).FirstOrDefaultAsync();
+			string senhaMd5;
+			using (MD5 md5Hash = MD5.Create()) {
+				senhaMd5 = GetMd5Hash(md5Hash, Funcionario.Senha);
+			}
+
+			var funcionario = await _context.Funcionarios.Where(x => x.Email == Funcionario.Email && x.Senha == senhaMd5).FirstOrDefaultAsync();
 
 			if (funcionario != null) {
 				HttpContext.Session.SetString(SessionConfiguracao.SessionChaveNome, funcionario.Nome);
@@ -34,6 +41,18 @@ namespace Estudio.Pages {
 			}
 
 			return Page();
+		}
+
+		private string GetMd5Hash(MD5 md5Hash, string senha) {
+			byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(senha));
+
+			StringBuilder sBuilder = new StringBuilder();
+
+			foreach (var byteData in data) {
+				sBuilder.Append(byteData.ToString("x2"));
+			}
+
+			return sBuilder.ToString();
 		}
 	}
 }
