@@ -36,6 +36,7 @@ namespace Estudio.Pages {
 			if (funcionario != null) {
 				HttpContext.Session.SetString(SessionConfiguracao.SessionChaveNome, funcionario.Nome);
 				HttpContext.Session.SetInt32(SessionConfiguracao.SessionChaveEstaLogado, 1);
+				HttpContext.Session.SetInt32(SessionConfiguracao.SessionChaveIdFuncionario, funcionario.IdFuncionario);
 
 				return RedirectToPage("./Dashboard");
 			}

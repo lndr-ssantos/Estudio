@@ -6,7 +6,12 @@
 
 <h2>Fechar Agendamento</h2>
 
-<h4>@Model.Agendamento.Banda.NomeBanda - @Model.Agendamento.Sala.Nome - @Model.Agendamento.Data.ToString("dd/MM/yyyy")</h4>
+<h4>
+	@Model.Agendamento.Banda.NomeBanda - 
+	@Model.Agendamento.Sala.Nome - 
+	@Model.Agendamento.Data.ToString("dd/MM/yyyy") - 
+	Aberto por @Model.Agendamento.Funcionario.Nome
+</h4>
 <hr />
 <h4>Pedidos</h4>
 <table class="table">

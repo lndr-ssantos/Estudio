@@ -24,6 +24,7 @@ namespace Estudio.Pages.Agendamentos {
 				.Include(agendamento => agendamento.ControleConsumiveis)
 					.ThenInclude(controle => controle.Consumivel)
 				.Include(agendamento => agendamento.Sala)
+				.Include(agendamento => agendamento.Funcionario)
 				.FirstOrDefaultAsync(x => x.IdAgendamento == IdAgendamento);
 
 			CalcularValorTotal();

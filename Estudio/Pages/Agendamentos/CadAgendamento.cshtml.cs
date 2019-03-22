@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Estudio.Data;
+using Estudio.GlobalConfiguracao;
 using Estudio.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -43,6 +44,7 @@ namespace Estudio.Pages.Agendamentos {
 			}
 
 			Agendamento.Ativo = true;
+			Agendamento.IdFuncionario = HttpContext.Session.GetInt32(SessionConfiguracao.SessionChaveIdFuncionario);
 
 			_context.Agendamentos.Add(Agendamento);
 			await _context.SaveChangesAsync();
