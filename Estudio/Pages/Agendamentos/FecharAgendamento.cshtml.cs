@@ -8,11 +8,13 @@ using Microsoft.EntityFrameworkCore;
 namespace Estudio.Pages.Agendamentos {
 	public class FecharAgendamentoModel : PageModel {
 		private readonly EstudioContext _context;
-		public Agendamento Agendamento { get; set; }
 
 		public FecharAgendamentoModel(EstudioContext context) {
 			_context = context;
 		}
+
+		[BindProperty]
+		public Agendamento Agendamento { get; set; }
 
 		public async Task<IActionResult> OnGetAsync(int? IdAgendamento) {
 			if (IdAgendamento == null) {
@@ -36,10 +38,11 @@ namespace Estudio.Pages.Agendamentos {
 			return Page();
       }
 
-		public async Task<IActionResult> OnPostAsync(int? IdAgendamento) {
-			var agendamento = await _context.Agendamentos.FirstOrDefaultAsync(x => x.IdAgendamento == IdAgendamento);
+		public async Task<IActionResult> OnPostAsync() {
+			var agendamento = await _context.Agendamentos.FirstOrDefaultAsync(x => x.IdAgendamento == Agendamento.IdAgendamento);
 			agendamento.Ativo = false;
-			_context.Entry(agendamento).Property("Ativo").IsModified = true;
+			agendamento.Valor = Agendamento.Valor;
+			_context.Agendamentos.Update(agendamento);
 			await _context.SaveChangesAsync();
 
 			return RedirectToPage("../Dashboard");

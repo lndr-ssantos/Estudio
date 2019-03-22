@@ -42,5 +42,6 @@
 
 <form method="post">
 	@Html.HiddenFor(x => x.Agendamento.IdAgendamento)
-	<button class="btn btn-primary">Fechar agendamento</button>
+	@Html.HiddenFor(x => x.Agendamento.Valor)
+<button class="btn btn-primary">Fechar agendamento</button>
 </form>
